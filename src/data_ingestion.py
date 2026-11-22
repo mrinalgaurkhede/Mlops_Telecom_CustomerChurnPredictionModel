@@ -13,7 +13,7 @@ def data_ingestion():
 
     * Problem Statement:
     1. To predict the churn rate
-    2. Use Clustering approach to predict and classify the cluster pattern such as {11,12 & 13}
+    2. Use Clustering approach to predict and classify the cluster pattern such as {L1,L2 & L3}
     '''
     df = pd.read_csv(r"C:\Mlops_Telecom_CustomerChurnPredictionModel\data\raw\churn.csv")
 
