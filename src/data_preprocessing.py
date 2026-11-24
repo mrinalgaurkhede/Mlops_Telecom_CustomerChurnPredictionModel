@@ -49,10 +49,10 @@ def data_preprocessing(df):
                                      ('categorical_pipeline',categorical_pipeline,categorical_col)])
 
     #  Step9 : Fit the transformer on train and test
-    X_train = transformer.fit_transform(X_train)# Seen data
-    X_test = transformer.transform(X_test) # Unseen data
+    X_train_transform = transformer.fit_transform(X_train)# Seen data
+    X_test_transform = transformer.transform(X_test) # Unseen data
 
-    # Step10 : Use traget column balance technique
+    # Step10 : Use SMOTE techniqueto balance the target column
     '''
     * Generally used with classification model
     * Target Column balance technique basically classified into two..
@@ -60,7 +60,8 @@ def data_preprocessing(df):
     2) under_sampling technique : when data is too large,ensure data is large enough to have seen and unseen data.
     (computation time: go for under sampling(Cluster Centroid))
     '''
-    X_train,y_train = SMOTE().fit_resample(X_train,y_train) 
+    sm = SMOTE(random_state = 1)
+    X_train_resample,y_train_resample = sm.fit_resample(X_train_transform,y_train)
 
     #  Step11 : Return preprocessed X_train,X_test,y_train,y_test
-    return X_train,X_test,y_train,y_test
+    return X_train_resample,X_test_transform,y_train_resample,y_test
